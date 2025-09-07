@@ -17,7 +17,7 @@ body {
 }
 
 canvas#vaseCanvas {
-  display:flex;
+  /*display:flex;*/
   border: 1px solid #ccc;
   border-radius: 4px;
   background: #fafafa;
