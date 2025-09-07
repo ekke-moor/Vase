@@ -1,24 +1,46 @@
-const shapes = [];
-for(let i = 0; i < 200; i++) {
-  shapes.push({
-    type: 'polygon',
-    points: [
-      { x: 60, y: 400 },
-      { x: 40, y: 250 },
-      { x: 70, y: 133 },
-      { x: 80, y: 100 },
-      { x: 85, y: 67 },
-      { x: 115, y: 67 },
-      { x: 120, y: 100 },
-      { x: 130, y: 133 },
-      { x: 160, y: 250 },
-      { x: 140, y: 400 }
-    ],
-    fill: 'rgba(0, 0, 255, 0.5)',
-    stroke: 'blue',
-    strokeWidth: 2,
-    left: Math.random() * 400,  // random position example
-    top: Math.random() * 400,
-    selectable: false
-  });
-}
+    // JSON array of 200 vase-like polygons
+    const shapesJSON = [];
+    for (let i = 0; i < 200; i++) {
+      shapesJSON.push({
+        type: 'polygon',
+        points: [
+          { x: 60, y: 400 },
+          { x: 40, y: 250 },
+          { x: 70, y: 133 },
+          { x: 80, y: 100 },
+          { x: 85, y: 67 },
+          { x: 115, y: 67 },
+          { x: 120, y: 100 },
+          { x: 130, y: 133 },
+          { x: 160, y: 250 },
+          { x: 140, y: 400 }
+        ],
+        fill: 'rgba(0, 0, 255, 0.5)',
+        stroke: 'blue',
+        strokeWidth: 2,
+        selectable: false
+      });
+    }
+
+    const container = document.getElementById('container');
+
+    shapesJSON.forEach((shape) => {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('canvas-wrapper');
+      container.appendChild(wrapper);
+
+      const canvasEl = document.createElement('canvas');
+      canvasEl.width = 200;
+      canvasEl.height = 400;
+      wrapper.appendChild(canvasEl);
+
+      const fabricCanvas = new fabric.Canvas(canvasEl, { selection: false });
+      const polygon = new fabric.Polygon(shape.points, {
+        fill: shape.fill,
+        stroke: shape.stroke,
+        strokeWidth: shape.strokeWidth,
+        selectable: shape.selectable
+      });
+      fabricCanvas.add(polygon);
+      fabricCanvas.renderAll();
+    });
