@@ -1,35 +1,37 @@
-<div style="position: relative; width: 200px; height: 400px;">
-  <!-- Pink background canvas -->
-  <canvas id="backgroundCanvas" width="200" height="400" style="position: absolute; top: 0; left: 0; z-index: 0;"></canvas>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+</head>
+<body>
+  <canvas id="myCanvas" width="200" height="400" style="border:1px solid #ccc"></canvas>
 
-  <!-- Vase canvas on top -->
-  <canvas id="vaseCanvas" width="200" height="400" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
-</div>
+  <script>
+    // Initialize Fabric.js canvas tied to the canvas element with id 'myCanvas'
+    const canvas = new fabric.Canvas('myCanvas');
 
-<script>
-  // Draw pink background
-  const bgCanvas = document.getElementById('backgroundCanvas');
-  const bgCtx = bgCanvas.getContext('2d');
-  bgCtx.fillStyle = 'pink';
-  bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+    // Create a polygon with points shaped like a vase
+    const vasePoints = [
+      { x: 60, y: 400 },   // Bottom left
+      { x: 40, y: 250 },   // Waist left
+      { x: 70, y: 133 },   // Neck left
+      { x: 80, y: 100 },   // Upper neck left
+      { x: 85, y: 67 },    // Top left
+      { x: 115, y: 67 },   // Top right
+      { x: 120, y: 100 },  // Upper neck right
+      { x: 130, y: 133 },  // Neck right
+      { x: 160, y: 250 },  // Waist right
+      { x: 140, y: 400 }   // Bottom right
+    ];
 
-  // Draw blue semi-transparent vase
-  const vaseCanvas = document.getElementById('vaseCanvas');
-  const vaseCtx = vaseCanvas.getContext('2d');
-  vaseCtx.fillStyle = 'rgba(0, 0, 255, 0.5)'; // blue with 50% opacity
+    const vase = new fabric.Polygon(vasePoints, {
+      fill: 'rgba(0, 0, 255, 0.5)', // semi-transparent blue fill
+      stroke: 'blue',
+      strokeWidth: 2,
+      selectable: false
+    });
 
-  vaseCtx.beginPath();
-  vaseCtx.moveTo(100 - 40, 400);      // Bottom left
-  vaseCtx.lineTo(100 - 60, 250);      // Waist left
-  vaseCtx.lineTo(100 - 30, 133);      // Neck left
-  vaseCtx.lineTo(100 - 20, 100);      // Upper neck left
-  vaseCtx.lineTo(100 - 15, 67);       // Top left
-  vaseCtx.lineTo(100 + 15, 67);       // Top right
-  vaseCtx.lineTo(100 + 20, 100);      // Upper neck right
-  vaseCtx.lineTo(100 + 30, 133);      // Neck right
-  vaseCtx.lineTo(100 + 60, 250);      // Waist right
-  vaseCtx.lineTo(100 + 40, 400);      // Bottom right
-  vaseCtx.closePath();
-
-  vaseCtx.fill();
-</script>
+    canvas.add(vase);
+  </script>
+</body>
+</html>
