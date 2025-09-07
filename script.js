@@ -36,6 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
   ellipse.set({ selectable: true });
   neck.set({ selectable: true });
 
-  // Fit canvas to parent (optional)
-  // canvas.setWidth(document.getElementById('container').offsetWidth - 40);
+  // Fit canvas to parent
+  canvas.setWidth(document.getElementById('container').offsetWidth - 40);
 });
