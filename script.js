@@ -1,46 +1,41 @@
-    // JSON array of 200 vase-like polygons
-    const shapesJSON = [];
-    for (let i = 0; i < 200; i++) {
-      shapesJSON.push({
-        type: 'polygon',
-        points: [
-          { x: 60, y: 400 },
-          { x: 40, y: 250 },
-          { x: 70, y: 133 },
-          { x: 80, y: 100 },
-          { x: 85, y: 67 },
-          { x: 115, y: 67 },
-          { x: 120, y: 100 },
-          { x: 130, y: 133 },
-          { x: 160, y: 250 },
-          { x: 140, y: 400 }
-        ],
-        fill: 'rgba(0, 0, 255, 0.5)',
-        stroke: 'blue',
-        strokeWidth: 2,
-        selectable: false
-      });
-    }
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if Fabric.js loaded
+  if (typeof fabric === 'undefined') {
+    alert('Fabric.js failed to load.');
+    return;
+  }
 
-    const container = document.getElementById('container');
+  // Create a Fabric.js canvas
+  var canvas = new fabric.Canvas('vaseCanvas');
 
-    shapesJSON.forEach((shape) => {
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('canvas-wrapper');
-      container.appendChild(wrapper);
+  // Example: Draw a simple vase shape
+  var ellipse = new fabric.Ellipse({
+    left: 270,
+    top: 120,
+    rx: 60,
+    ry: 100,
+    fill: '#b5c3d1',
+    stroke: '#888',
+    strokeWidth: 2
+  });
 
-      const canvasEl = document.createElement('canvas');
-      canvasEl.width = 200;
-      canvasEl.height = 400;
-      wrapper.appendChild(canvasEl);
+  var neck = new fabric.Rect({
+    left: 295,
+    top: 80,
+    width: 30,
+    height: 40,
+    fill: '#dee6ef',
+    stroke: '#888',
+    strokeWidth: 2
+  });
 
-      const fabricCanvas = new fabric.Canvas(canvasEl, { selection: false });
-      const polygon = new fabric.Polygon(shape.points, {
-        fill: shape.fill,
-        stroke: shape.stroke,
-        strokeWidth: shape.strokeWidth,
-        selectable: shape.selectable
-      });
-      fabricCanvas.add(polygon);
-      fabricCanvas.renderAll();
-    });
+  canvas.add(ellipse);
+  canvas.add(neck);
+
+  // Example: Make objects selectable/movable
+  ellipse.set({ selectable: true });
+  neck.set({ selectable: true });
+
+  // Fit canvas to parent (optional)
+  // canvas.setWidth(document.getElementById('container').offsetWidth - 40);
+});
