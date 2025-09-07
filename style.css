@@ -1,1 +1,11 @@
-
+  #container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 1050px; /* 5 canvas * 200px + gaps */
+    }
+    .canvas-wrapper {
+      width: 200px;
+      height: 400px;
+      border: 1px solid #ccc;
+    }
