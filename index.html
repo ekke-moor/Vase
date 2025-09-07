@@ -1,0 +1,35 @@
+<div style="position: relative; width: 200px; height: 400px;">
+  <!-- Pink background canvas -->
+  <canvas id="backgroundCanvas" width="200" height="400" style="position: absolute; top: 0; left: 0; z-index: 0;"></canvas>
+
+  <!-- Vase canvas on top -->
+  <canvas id="vaseCanvas" width="200" height="400" style="position: absolute; top: 0; left: 0; z-index: 1;"></canvas>
+</div>
+
+<script>
+  // Draw pink background
+  const bgCanvas = document.getElementById('backgroundCanvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  bgCtx.fillStyle = 'pink';
+  bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+  // Draw blue semi-transparent vase
+  const vaseCanvas = document.getElementById('vaseCanvas');
+  const vaseCtx = vaseCanvas.getContext('2d');
+  vaseCtx.fillStyle = 'rgba(0, 0, 255, 0.5)'; // blue with 50% opacity
+
+  vaseCtx.beginPath();
+  vaseCtx.moveTo(100 - 40, 400);      // Bottom left
+  vaseCtx.lineTo(100 - 60, 250);      // Waist left
+  vaseCtx.lineTo(100 - 30, 133);      // Neck left
+  vaseCtx.lineTo(100 - 20, 100);      // Upper neck left
+  vaseCtx.lineTo(100 - 15, 67);       // Top left
+  vaseCtx.lineTo(100 + 15, 67);       // Top right
+  vaseCtx.lineTo(100 + 20, 100);      // Upper neck right
+  vaseCtx.lineTo(100 + 30, 133);      // Neck right
+  vaseCtx.lineTo(100 + 60, 250);      // Waist right
+  vaseCtx.lineTo(100 + 40, 400);      // Bottom right
+  vaseCtx.closePath();
+
+  vaseCtx.fill();
+</script>
