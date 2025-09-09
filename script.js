@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+export function setupVaseCanvas() {
   // Check if Fabric.js loaded
   if (typeof fabric === 'undefined') {
     alert('Fabric.js failed to load.');
@@ -38,4 +38,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Fit canvas to parent
   canvas.setWidth(document.getElementById('container').offsetWidth - 40);
-});
+}
