@@ -5,7 +5,11 @@
   <title>Vase App</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
-  <script src="main.js"></script>
+    <script type="module">
+    import { setupVaseCanvas } from './script.js';
+    document.addEventListener('DOMContentLoaded', setupVaseCanvas);
+    // Or, if your script is at the end of body, just: setupVaseCanvas();
+  </script>
 </head>
 <body>
 <div id=”layout”>
